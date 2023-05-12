@@ -1,0 +1,54 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<Testimonial>
+@inject SignInManager<IdentityUser> signInManager
+
+
+<!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+            <h1 class="mb-5">Our Clients Say!!!</h1>
+        </div>
+        @{
+            int count = 0;
+        }
+        @foreach (var i in Model)
+        {
+            count++;
+        }
+        <div class="owl-carousel testimonial-carousel position-relative">
+            @foreach (var item in Model)
+            {
+                @if (item.Status)
+                {
+
+                    <div class="testimonial-item bg-white text-center border p-4">
+
+                        <h5 class="mb-0">@item.Name</h5>
+                        <p class="mb-0">@item.Message</p>
+
+                    </div>
+                    @if (count<=3)
+                    {
+                        <div class="testimonial-item bg-white text-center border p-4">
+
+                            <h5 class="mb-0">@item.Name</h5>
+                            <p class="mb-0">@item.Message</p>
+
+                        </div>
+                    }
+
+                }}
+        </div>
+        @if(signInManager.IsSignedIn(User))
+        {
+            <div>
+                <a asp-action="WriteReview" asp-controller="Testimonials" asp-area="Admin">write a review</a>
+            </div>
+        }
+
+
+    </div>
+</div>
+<!-- Testimonial End -->

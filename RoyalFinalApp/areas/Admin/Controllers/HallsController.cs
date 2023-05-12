@@ -26,7 +26,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         // GET: Admin/Halls
         public async Task<IActionResult> Index()
         {
-           // var finalDbContext = _context.Halls.Include(c => c.Category);
+            // var finalDbContext = _context.Halls.Include(c => c.Category);
 
             return _context.Halls != null ?
                         View(await _context.Halls.Include(c => c.Category).ToListAsync()) :
@@ -34,7 +34,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         }
 
         // GET: Admin/Halls/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Halls == null)
             {
@@ -76,8 +76,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
                     Status=model.Status,
                     IsDeleted=model.IsDeleted,
                     IsPuplished = model.IsPuplished,
-                    Price=model.Price,  
-                    UserId=model.UserId,
+                    Price=model.Price,
                     Image=imgName,
                 };
 
@@ -107,7 +106,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Hall hall)
+        public async Task<IActionResult> Edit(Guid id, Hall hall)
         {
             if (id != hall.Id)
             {
@@ -137,7 +136,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             return View(hall);
         }
         // GET: Admin/Halls/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Halls == null)
             {
@@ -156,7 +155,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         // POST: Admin/Halls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             if (_context.Halls == null)
             {
@@ -172,7 +171,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool HallExists(int id)
+        private bool HallExists(Guid id)
         {
             return (_context.Halls?.Any(e => e.Id == id)).GetValueOrDefault();
         }

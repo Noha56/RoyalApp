@@ -6,7 +6,7 @@ namespace RoyalFinalApp.Models
     public class Category:CommonProp
     {
 
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         [Required]
         [Display(Name = "Category Name")]
         public string? CategoryName { get; set; }

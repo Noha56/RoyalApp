@@ -10,7 +10,7 @@ namespace RoyalFinalApp.Models.ViewModels
         [Required]
         [Display(Name = "Course Image")]
         public IFormFile? Image { get; set; }
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Display(Name = "Name")]
         public string? HallName { get; set; }
    
@@ -30,7 +30,7 @@ namespace RoyalFinalApp.Models.ViewModels
 
         [ForeignKey("Category")]
         [Display(Name = "Category Name")]
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
     }
 }

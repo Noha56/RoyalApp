@@ -8,7 +8,5 @@ namespace RoyalFinalApp.Models.SharedProp
         public bool IsDeleted { get; set; }
         [DisplayName("Is Puplished")]
         public bool IsPuplished { get; set; }
-        [DisplayName("User")]
-        public string? UserId { get; set; }
     }
 }

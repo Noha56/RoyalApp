@@ -6,7 +6,7 @@ namespace RoyalFinalApp.Models
 {
     public class Hall:CommonProp
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Display(Name = "Name")]
         public string? HallName { get; set; }
  
@@ -28,7 +28,7 @@ namespace RoyalFinalApp.Models
 
         [ForeignKey("Category")]
         [Display(Name = "Category Name")]
-        public int CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
     }
 }

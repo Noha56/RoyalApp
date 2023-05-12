@@ -29,7 +29,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         }
 
         // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null || _context.Categories == null)
             {
@@ -89,7 +89,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id,Category category)
+        public async Task<IActionResult> Edit(Guid id,Category category)
         {
             if (id != category.CategoryId)
             {
@@ -120,7 +120,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         }
 
         // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Categories == null)
             {
@@ -156,7 +156,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool CategoryExists(Guid id)
         {
           return (_context.Categories?.Any(e => e.CategoryId == id)).GetValueOrDefault();
         }

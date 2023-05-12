@@ -5,7 +5,7 @@ namespace RoyalFinalApp.Models
 {
     public class Topbar : CommonProp
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [DataType(DataType.EmailAddress)]
         public string? Email { get; set; }
         public string? Phone { get; set; }

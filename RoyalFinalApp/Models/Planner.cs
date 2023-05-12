@@ -5,7 +5,7 @@ namespace RoyalFinalApp.Models
 {
     public class Planner : CommonProp
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         [Required]
         public string? PlannerImg { get; set; }
         [Required]
