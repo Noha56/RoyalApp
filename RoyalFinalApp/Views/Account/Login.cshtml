@@ -1,4 +1,6 @@
 ﻿@model RoyalFinalApp.Models.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> _signInManager
 @{
     Layout = null;
 }
@@ -56,11 +58,10 @@
                     </div>
 
                     <div class="flex-sb-m w-full p-b-30">
-                        <label class="txt1">
+                    @*    <label class="txt1">
                             Remember me
-                      
-                        <input asp-for="RememberMe"/>
-                        </label>
+                            <input asp-for="RememberMe" />
+                        </label>*@
                         <div>
                             <a href="~/assets/loginStyle/#" class="txt1">
                                 Forgot Password?
@@ -77,7 +78,6 @@
             </div>
         </div>
     </div>
-
     <!--===============================================================================================-->
     <script src="~/assets/loginStyle/vendor/jquery/jquery-3.2.1.min.js"></script>
     <!--===============================================================================================-->

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using RoyalFinalApp.Models.ViewModels;
 
 namespace RoyalFinalApp.Controllers
@@ -8,10 +9,14 @@ namespace RoyalFinalApp.Controllers
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        private readonly IToastNotification _toastNotification;
+
+        public ProfileController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager,
+            IToastNotification toastNotification)
         {
             _signInManager= signInManager;
             _userManager= userManager;
+            _toastNotification= toastNotification;
         }
         public IActionResult Index()
         {
@@ -29,7 +34,8 @@ namespace RoyalFinalApp.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 if (user == null)
                 {
-                    return RedirectToAction("Login");
+                    _toastNotification.AddErrorToastMessage("You are not registered yet!");
+                    return RedirectToAction("Login","Account");
                 }
 
                 // ChangePasswordAsync changes the user password
@@ -50,6 +56,8 @@ namespace RoyalFinalApp.Controllers
 
                 // Upon successfully changing the password refresh sign-in cookie
                 await _signInManager.RefreshSignInAsync(user);
+                _toastNotification.AddSuccessToastMessage("Your password has been changed successfully!");
+
                 return RedirectToAction("Index");
             }
 

@@ -220,6 +220,26 @@ namespace RoyalFinalApp.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("RoyalFinalApp.Models.AboutUs", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AboutUs");
+                });
+
             modelBuilder.Entity("RoyalFinalApp.Models.Category", b =>
                 {
                     b.Property<Guid>("CategoryId")
@@ -264,6 +284,12 @@ namespace RoyalFinalApp.Migrations
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsBooked")
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
@@ -311,6 +337,26 @@ namespace RoyalFinalApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Planners");
+                });
+
+            modelBuilder.Entity("RoyalFinalApp.Models.Reservation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("Day")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("HallId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal?>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Reservations");
                 });
 
             modelBuilder.Entity("RoyalFinalApp.Models.Testimonial", b =>

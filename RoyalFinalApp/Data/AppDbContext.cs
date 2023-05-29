@@ -13,5 +13,7 @@ namespace RoyalFinalApp.Data
         public DbSet<Hall> Halls { get; set; }
         public DbSet<Planner> Planners { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<Reservation> Reservations { get; set; }
+        public DbSet<AboutUs> AboutUs { get; set; }
     }
 }

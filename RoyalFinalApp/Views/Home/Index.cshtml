@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_RoyalLayout.cshtml";
 }
@@ -10,16 +9,28 @@
                         <h1 class="display-3 text-white mb-3 animated slideInDown">Enjoy Your Party With Us</h1>
                         <p class="fs-4 text-white mb-4 animated slideInDown">Plan your graduation or wedding with us</p>
                         <div class="position-relative w-75 mx-auto animated slideInDown">
-                            <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" type="text" placeholder="Eg: Wedding">
-                            <button type="button" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;">Search</button>
+                            <form asp-action="Search" method="post">
+                        <input class="form-control border-0 rounded-pill w-100 py-3 ps-4 pe-5" name="input" id="input" type="text" placeholder="Eg: Wedding">
+                            <input type="submit" asp-action="Search" asp-controller="Home" class="btn btn-primary rounded-pill py-2 px-4 position-absolute top-0 end-0 me-2" style="margin-top: 7px;"/>
+                            </form>
+                          
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
+@if (ViewBag.status==true)
+{
+    @Html.Partial("HallView")
+}else{
+    @await Component.InvokeAsync("Hall")
+}
+@*@await Component.InvokeAsync("Hall")
+*@
 
-@await Component.InvokeAsync("Hall")
+
+@await Component.InvokeAsync("Planner")
 
 
 <!-- Service Start -->

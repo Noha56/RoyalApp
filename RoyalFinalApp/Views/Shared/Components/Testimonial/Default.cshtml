@@ -20,25 +20,19 @@
         <div class="owl-carousel testimonial-carousel position-relative">
             @foreach (var item in Model)
             {
-                @if (item.Status)
+                @if (item.IsPuplished)
                 {
-
                     <div class="testimonial-item bg-white text-center border p-4">
-
                         <h5 class="mb-0">@item.Name</h5>
                         <p class="mb-0">@item.Message</p>
-
                     </div>
                     @if (count<=3)
                     {
                         <div class="testimonial-item bg-white text-center border p-4">
-
                             <h5 class="mb-0">@item.Name</h5>
                             <p class="mb-0">@item.Message</p>
-
                         </div>
                     }
-
                 }}
         </div>
         @if(signInManager.IsSignedIn(User))

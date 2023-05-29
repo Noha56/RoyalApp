@@ -96,6 +96,9 @@
                     <li>
                         <a asp-action="Index" asp-controller="Planners" asp-area="Admin"> <i class="menu-icon ti-email"></i>Planner </a>
                     </li>
+                    <li>
+                        <a asp-action="Index" asp-controller="Roles" asp-area=""> <i class="menu-icon ti-email"></i>Role </a>
+                    </li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -195,7 +198,7 @@
 
                         <div class="user-menu dropdown-menu">
                             <a class="nav-link" href="#"><i class="fa fa- user"></i>My Profile</a>
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" asp-action="Logout" asp-controller="Account" asp-area=""><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
 

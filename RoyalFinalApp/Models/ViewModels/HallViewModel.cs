@@ -8,7 +8,7 @@ namespace RoyalFinalApp.Models.ViewModels
     {
 
         [Required]
-        [Display(Name = "Course Image")]
+        [Display(Name = "Image")]
         public IFormFile? Image { get; set; }
         public Guid Id { get; set; }
         [Display(Name = "Name")]
@@ -32,5 +32,12 @@ namespace RoyalFinalApp.Models.ViewModels
         [Display(Name = "Category Name")]
         public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
+
+
+        [Display(Name = "Is Available")]
+        public bool IsAvailable { get; set; }
+        [Display(Name = "Is Booked")]
+        public bool IsBooked { get; set; }
+
     }
 }

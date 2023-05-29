@@ -13,7 +13,7 @@ namespace RoyalFinalApp.ViewComponents
 
         public IViewComponentResult Invoke()
         {
-            var data = _db.Topbars.OrderByDescending(x=>x.Id);
+            var data = _db.Topbars.FirstOrDefault();
             return View(data);
         }
     }

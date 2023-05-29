@@ -60,13 +60,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <div class="navbar-nav ms-auto py-0">
-                    <a asp-action="Index" asp-controller="Home" class="nav-item nav-link active">Home</a>
-                    <a href="about.html" class="nav-item nav-link">About</a>
-                    <a href="package.html" class="nav-item nav-link">Packages</a>
-                    <a href="booking.html" class="nav-item nav-link">Booking</a>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a asp-action="Index" asp-controller="Home" asp-area="" class="nav-item nav-link active">Home</a>
+                    <a asp-action="Index" asp-controller="About" asp-area="" class="nav-item nav-link">About</a>
+                    <a asp-action="Index" asp-controller="GoogleMap" asp-area="" class="nav-item nav-link">Contact</a>
                 </div>
-                @if (signInManager.IsSignedIn(User))
+                @if(signInManager.IsSignedIn(User))
                 {
                     <a asp-action="Index" asp-controller="Profile"  class="btn btn-primary rounded-pill py-2 px-4">Profile</a>
                 }
@@ -92,27 +90,26 @@
             <div class="row g-5">
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Company</h4>
-                    <a class="btn btn-link" href="">About Us</a>
-                    <a class="btn btn-link" href="">Contact Us</a>
-                    <a class="btn btn-link" href="">Privacy Policy</a>
-                    <a class="btn btn-link" href="">Terms & Condition</a>
-                    <a class="btn btn-link" href="">FAQs & Help</a>
+                    <a class="btn btn-link" asp-action="SoonPage" asp-controller="Home">About Us</a>
+                    <a class="btn btn-link" asp-action="SoonPage" asp-controller="Home">Contact Us</a>
+                    <a class="btn btn-link" asp-action="SoonPage" asp-controller="Home">Privacy Policy</a>
+                    <a class="btn btn-link" asp-action="SoonPage" asp-controller="Home">Terms & Condition</a>
+                    <a class="btn btn-link" asp-action="SoonPage" asp-controller="Home">FAQs & Help</a>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Amman- Jordan</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+962791955168</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>Royal@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://twitter.com/?lang=ar"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://en-gb.facebook.com/"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://www.youtube.com/"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
                     <h4 class="text-white mb-3">Newsletter</h4>
-                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <p>Subscribe to receive all new</p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
                         <input class="form-control border-primary w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
                         <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
@@ -124,12 +121,12 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">Royal</a>, All Right Reserved.
 
                         <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
                         Created by Noha Alsaafin
                     </div>
-                    <div class="col-md-6 text-center text-md-end">
+@*                    <div class="col-md-6 text-center text-md-end">
                         <div class="footer-menu">
                             <a href="">Home</a>
                             <a href="">Cookies</a>
@@ -137,7 +134,7 @@
                             <a href="">FQAs</a>
                         </div>
                     </div>
-                </div>
+*@                </div>
             </div>
         </div>
     </div>
@@ -158,6 +155,8 @@
 
     <!-- Template Javascript -->
     <script src="~/assets/js/main.js"></script>
+
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 
 </html>

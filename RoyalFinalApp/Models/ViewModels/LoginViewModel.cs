@@ -10,7 +10,7 @@ namespace RoyalFinalApp.Models.ViewModels
         [Required(ErrorMessage = "Enter Password")]
         [DataType(DataType.Password)]
         public string? Password { get; set; }
-        public bool RememberMe { get; set; }
+      //  public bool RememberMe { get; set; }
     }
 }
 

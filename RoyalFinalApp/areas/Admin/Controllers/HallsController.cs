@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +13,7 @@ using RoyalFinalApp.Models.ViewModels;
 namespace RoyalFinalApp.areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class HallsController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,7 +22,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         public HallsController(AppDbContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
-            _webHostEnvironment=webHostEnvironment;
+           _webHostEnvironment=webHostEnvironment;
         }
 
         // GET: Admin/Halls
@@ -47,6 +49,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
 
             return View(hall);
         }
@@ -78,6 +81,9 @@ namespace RoyalFinalApp.areas.Admin.Controllers
                     IsPuplished = model.IsPuplished,
                     Price=model.Price,
                     Image=imgName,
+                    Category=model.Category,
+                    IsBooked=model.IsBooked,
+                    IsAvailable=model.IsAvailable,
                 };
 
                 _context.Add(hall);
@@ -90,7 +96,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
         }
 
         // GET: Admin/Halls/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Halls == null)
             {
@@ -102,13 +108,31 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(hall);
+            HallViewModel model = new HallViewModel
+            {
+                Address= hall.Address,
+                AvailableDate= hall.AvailableDate,
+                Capacity= hall.Capacity,
+                CategoryId= hall.CategoryId,
+                HallName = hall.HallName,
+                Id = hall.Id,
+                Status=hall.Status,
+                IsDeleted=hall.IsDeleted,
+                IsPuplished = hall.IsPuplished,
+                Price=hall.Price,
+                Image=null,
+                IsAvailable=hall.IsAvailable,
+                IsBooked=hall.IsBooked,
+                Category=hall.Category, 
+            };
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", model.CategoryId);
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Hall hall)
+        public async Task<IActionResult> Edit(Guid id, HallViewModel model)
         {
-            if (id != hall.Id)
+            if (id != model.Id)
             {
                 return NotFound();
             }
@@ -117,12 +141,32 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             {
                 try
                 {
+                    string imgName = FileUpload(model);
+
+                    Hall hall = new Hall
+                    {
+                        Address= model.Address,
+                        AvailableDate= DateTime.Now,
+                        Capacity= model.Capacity,
+                        CategoryId= model.CategoryId,
+                        HallName = model.HallName,
+                        Id = model.Id,
+                        Status=model.Status,
+                        IsDeleted=model.IsDeleted,
+                        IsPuplished = model.IsPuplished,
+                        Price=model.Price,
+                        Image=imgName,
+                        Category=model.Category,
+                        IsBooked=model.IsBooked,
+                        IsAvailable=model.IsAvailable,
+                    };
+
                     _context.Update(hall);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!HallExists(hall.Id))
+                    if (!HallExists(model.Id))
                     {
                         return NotFound();
                     }
@@ -133,7 +177,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(hall);
+            return View(model);
         }
         // GET: Admin/Halls/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
@@ -187,7 +231,7 @@ namespace RoyalFinalApp.areas.Admin.Controllers
                 Directory.CreateDirectory(p);
             }
             string fileName = Path.GetFileNameWithoutExtension(model.Image!.FileName!);
-            string newImgName = "nextwo_"+ fileName +"_"+
+            string newImgName = "Roral_"+ fileName +"_"+
                 Guid.NewGuid().ToString()+Path.GetExtension(model.Image.FileName);
             using (FileStream fileStream = new FileStream(Path.Combine(p, newImgName), FileMode.Create))
             {
@@ -195,8 +239,5 @@ namespace RoyalFinalApp.areas.Admin.Controllers
             }
             return "\\Images\\"+ newImgName;
         }
-
-
-
     }
 }

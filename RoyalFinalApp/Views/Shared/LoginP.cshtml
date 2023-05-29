@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<IdentityUser> _signInManager
+if (_signInManager.IsSignedIn(User))
+    {
+        if (User.IsInRole("Admin"))
+        {
+<script>
+    window.location.href = "/Admin/Dashboard/Index";
+</script>
+        }else{
+<script>
+    window.location.href = "/Home/Index";
+</script>
+        }
+
+    }

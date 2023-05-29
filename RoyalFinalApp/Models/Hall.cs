@@ -22,7 +22,7 @@ namespace RoyalFinalApp.Models
         public string? Image { get; set; }
         [Display(Name = "Address")]
         public string? Address { get; set; }
-        [Display(Name = "Availabele date")]
+        [Display(Name = "Date")]
         [DataType(DataType.Date)]
         public DateTime? AvailableDate { get; set; }
 
@@ -30,5 +30,12 @@ namespace RoyalFinalApp.Models
         [Display(Name = "Category Name")]
         public Guid CategoryId { get; set; }
         public Category? Category { get; set; }
+
+
+        [Display(Name = "Is Available")]
+        public bool IsAvailable { get; set; }
+        [Display(Name = "Is Booked")]
+        public bool IsBooked { get; set; }
+
     }
 }
