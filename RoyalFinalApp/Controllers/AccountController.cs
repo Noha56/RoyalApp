@@ -85,7 +85,7 @@ namespace RoyalFinalApp.Controllers
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
-                    return RedirectToAction("Register", "Account");
+                    return View(model);
                 }
 				ModelState.AddModelError("", "Invalid Email or Password");
 				return View(model);

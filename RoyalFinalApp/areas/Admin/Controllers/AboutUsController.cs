@@ -13,6 +13,7 @@ using RoyalFinalApp.Models.ViewModels;
 namespace RoyalFinalApp.areas.Admin.Controllers
 {
     [Area("Admin")]
+
     public class AboutUsController : Controller
     {
         private readonly AppDbContext _context;

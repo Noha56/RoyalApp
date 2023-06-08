@@ -8,7 +8,7 @@ using RoyalFinalApp.Models.ViewModels;
 
 namespace RoyalFinalApp.Controllers
 {
-    [Authorize(Roles ="Admin")]
+   [Authorize(Roles ="Admin")]
     public class RolesController : Controller
     {
         private readonly AppDbContext _context;

@@ -45,7 +45,6 @@
                 </div>
 
                 <form asp-action="Login" class="login100-form validate-form">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class=" wrap-input100 validate-input m-b-26" data-validate="Username is required">
                         <span asp-for="Email" class="label-input100">Email</span>
                         <input asp-for="Email" class="input100" placeholder="Enter email" />
@@ -58,21 +57,23 @@
                     </div>
 
                     <div class="flex-sb-m w-full p-b-30">
-                    @*    <label class="txt1">
-                            Remember me
-                            <input asp-for="RememberMe" />
+                        @*    <label class="txt1">
+                        Remember me
+                        <input asp-for="RememberMe" />
                         </label>*@
                         <div>
                             <a href="~/assets/loginStyle/#" class="txt1">
                                 Forgot Password?
                             </a>
-                            </br>
+                            <br/>
                         </div>
                     </div>
                     <div class="form-group container-login100-form-btn">
                         <input type="submit" value="Login" class="btn btn-success" />
                     </div>
                     <a asp-action="Register" asp-controller="Account" class="txt1">Join us!</a>
+                    <br />
+                    <div asp-validation-summary="All" class="text-danger"></div>
 
                 </form>
             </div>

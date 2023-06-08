@@ -7,12 +7,14 @@
             <h1 class="mb-5">Meet Our Organizers</h1>
         </div>
 
-        @foreach (var item in Model)
-        {
-            if (item.IsPuplished == true)
-            {
+   
                 <div class="row g-4">
+                         @foreach (var item in Model)
+                {
+                    if (item.IsPuplished == true)
+                    {
                     <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+           
                         <div class="team-item">
                             <div class="overflow-hidden">
                                 <img class="img-fluid" src="@Url.Content(item.PlannerImg)" alt="">
@@ -27,10 +29,12 @@
                                 <small>@item.Specialist</small>
                             </div>
                         </div>
+                
                     </div>
-                </div>
+                }
             }
-        }
+                </div>
+        
 
     </div>
 </div>
