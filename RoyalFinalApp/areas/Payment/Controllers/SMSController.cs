@@ -8,7 +8,7 @@ using Twilio.TwiML.Voice;
 namespace RoyalFinalApp.Areas.Payment.Controllers
 {
     [Area("Payment")]
-    [Authorize("User")]
+    [Authorize(Roles = "User")]
     public class SMSController : Controller
     {
 

@@ -31,7 +31,7 @@ namespace RoyalFinalApp.areas.Payment.Controllers
             var charge = charges.Create(new ChargeCreateOptions
             {
 
-                Amount=5,
+                Amount=500,
                 Description="Test Payment",
                 Currency="usd",
                 Customer=customer.Id,
